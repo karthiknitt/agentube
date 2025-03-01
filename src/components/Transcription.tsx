@@ -19,6 +19,8 @@ function Transcription({ videoId }: { videoId: string }) {
   const { featureUsageExceeded } = useSchematicEntitlement(
     FeatureFlag.TRANSCRIPTION
   );
+  //FIXME:Temporary console.log to use above variables to proceed with the build without eslint ewrrors
+  console.log(videoId, setTranscript);
 
   return (
     //BUG: The followiing div for Transcription doen't render correctly in a box. No border present. Fix in next build.

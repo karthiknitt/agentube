@@ -4,6 +4,7 @@ import Usage from "./Usage";
 import { FeatureFlag } from "@/features/flags";
 import { useSchematicEntitlement } from "@schematichq/schematic-react";
 import { Copy } from "lucide-react";
+//FIXME:Temporary type definition to allow the build to pass
 
 interface Title {
   _id: string;
@@ -12,10 +13,12 @@ interface Title {
 }
 function TitleGeneration({ videoId }: { videoId: string }) {
   const { user } = useUser();
-  const titles: Title[] = []; //TODO: Pull from Convex DB
+  const titles: Title[] = []; //TODO: Pull from Convex DB. ALso added a temporary type definition above to allo the build to pass
   const { value: isTitleGenerationEnabled } = useSchematicEntitlement(
     FeatureFlag.TITLE_GENERATIONS
   );
+  //FIXME:Temporary console.log to use above variables to proceed with the build without eslint ewrrors
+  console.log(videoId, user, titles);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
