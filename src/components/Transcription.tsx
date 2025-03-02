@@ -11,7 +11,9 @@ interface TranscriptEntry {
   timestamp: string;
 }
 function Transcription({ videoId }: { videoId: string }) {
-  const [transcript, setTranscript] = useState<{
+  //FIXME:setTranscrip function removed temporaily to allow the build to pass
+
+  const [transcript] = useState<{
     transcript: TranscriptEntry[];
     cache: string;
   } | null>(null);
@@ -20,7 +22,7 @@ function Transcription({ videoId }: { videoId: string }) {
     FeatureFlag.TRANSCRIPTION
   );
   //FIXME:Temporary console.log to use above variables to proceed with the build without eslint ewrrors
-  console.log(videoId, setTranscript);
+  console.log(videoId);
 
   return (
     //BUG: The followiing div for Transcription doen't render correctly in a box. No border present. Fix in next build.
