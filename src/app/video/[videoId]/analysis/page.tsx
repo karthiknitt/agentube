@@ -8,6 +8,7 @@ import { FeatureFlag } from "@/features/flags";
 import { useParams } from "next/navigation";
 import TitleGeneration from "@/components/TitleGeneration";
 import Transcription from "@/components/Transcription";
+import AIAgentChat from "@/components/AIAgentChat";
 
 const AnalysisPage = () => {
   const params = useParams<{ videoId: string }>();
@@ -44,6 +45,7 @@ const AnalysisPage = () => {
         {/* Right Side */}
         <div className="order-1 lg:order-2 lg:sticky lg:top-20 h-[500px] md:h-[calc(100vh-6rem)]">
           {/* AI Agent Chat Section  */}
+          <AIAgentChat videoId={videoId} />
         </div>
       </div>
     </div>
