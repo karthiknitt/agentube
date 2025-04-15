@@ -1,19 +1,17 @@
 "use client";
 
+import { getYouTubeTranscript } from "@/actions/getYouTubeTranscript";
 import Usage from "./Usage";
 import { FeatureFlag } from "@/features/flags";
 import { useSchematicEntitlement } from "@schematichq/schematic-react";
-
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface TranscriptEntry {
   text: string;
   timestamp: string;
 }
 function Transcription({ videoId }: { videoId: string }) {
-  //FIXME:setTranscrip function removed temporaily to allow the build to pass
-
-  const [transcript] = useState<{
+  const [transcript, setTranscript] = useState<{
     transcript: TranscriptEntry[];
     cache: string;
   } | null>(null);
@@ -21,7 +19,23 @@ function Transcription({ videoId }: { videoId: string }) {
   const { featureUsageExceeded } = useSchematicEntitlement(
     FeatureFlag.TRANSCRIPTION
   );
-  //FIXME:Temporary console.log to use above variables to proceed with the build without eslint ewrrors
+
+  const handleGenerateTranscription = useCallback(
+    async (videoId: string) => {
+      if (featureUsageExceeded) {
+        console.log(
+          "Transcription limit reached, user must upgrade now to continue.."
+        );
+        return;
+      }
+      const result = await getYouTubeTranscript(videoId);
+      setTranscript(result);
+    },
+    [featureUsageExceeded]
+  );
+  useEffect(() => {
+    handleGenerateTranscription(videoId);
+  }, [handleGenerateTranscription, videoId]);
   console.log(videoId);
 
   return (

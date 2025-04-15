@@ -16,6 +16,7 @@ import type {
 import type * as images from "../images.js";
 import type * as Schema from "../Schema.js";
 import type * as transcript from "../transcript.js";
+import type * as videos from "../videos.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -29,6 +30,7 @@ declare const fullApi: ApiFromModules<{
   images: typeof images;
   Schema: typeof Schema;
   transcript: typeof transcript;
+  videos: typeof videos;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

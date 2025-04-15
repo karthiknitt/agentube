@@ -9,10 +9,56 @@ import { useParams } from "next/navigation";
 import TitleGeneration from "@/components/TitleGeneration";
 import Transcription from "@/components/Transcription";
 import AIAgentChat from "@/components/AIAgentChat";
-
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { set } from "zod";
+import { createOrGetVideo } from "@/actions/createOrGetVideo";
+import { Doc } from "../../../../../convex/_generated/dataModel";
+// The relative path from this page to dataModel.d.ts is:
 const AnalysisPage = () => {
   const params = useParams<{ videoId: string }>();
   const { videoId } = params;
+  const { user } = useUser();
+  const [video, setVideo] = useState<Doc<"videos"> | null | undefined>(
+    undefined
+  );
+  useEffect(() => {
+    if (!user?.id) return;
+    const fetchVideo = async () => {
+      const response = await createOrGetVideo(videoId as string, user.id);
+      if (!response.success) {
+        // Do smthg       }
+      } else setVideo(response.data!);
+    };
+
+    fetchVideo();
+  }, [videoId, user]);
+
+  const VideoTranscriptionStatus =
+    video === undefined ? (
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full">
+        <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" />
+        <span className="text-sm text-gray-700">Loading...</span>
+      </div>
+    ) : !video ? (
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-full">
+        <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+        <p className="text-sm text-amber-700">
+          This is your first time analyzing this video. <br />
+          <span className="font-semibold">
+            (1 Analysis token is being used!)
+          </span>
+        </p>
+      </div>
+    ) : (
+      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-full">
+        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+        <p className="text-sm text-green-700">
+          Analysis exists for this video - no additional tokens needed in future
+          calls! <br />
+        </p>
+      </div>
+    );
 
   return (
     //   Container

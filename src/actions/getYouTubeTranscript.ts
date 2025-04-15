@@ -86,7 +86,7 @@ export async function getYouTubeTranscript(videoId: string) {
     return {
       transcript,
       cache:
-        "This video was transcribed using a token. The video is now stored in a db",
+        "This video was transcribed using a token. The transcript is now stored in a db",
     };
   } catch (error) {
     console.error("Error fetching transcript:", error);
