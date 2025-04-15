@@ -2,9 +2,10 @@
 import getVideoDetails from "@/actions/getVideoDetails";
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { currentUser } from "@clerk/nextjs/server";
-//import { streamText, tool } from "ai";
-import { streamText } from "ai";
+import { streamText, tool } from "ai";
 import { NextResponse } from "next/server";
+
+import fetchTranscript from "../../../../tools/fetchTranscript";
 
 const key = process.env.CLAUDE_API_KEY;
 // console.log("key:\n", key);
@@ -45,10 +46,9 @@ export async function POST(req: Request) {
       },
       ...messages,
     ],
+    tools: {
+      fetchTranscript: fetchTranscript,
+    },
   });
-
-  //   console.log("Result:", result);
-
-  //   console.log("Rep", rep);
   return result.toDataStreamResponse();
 }
