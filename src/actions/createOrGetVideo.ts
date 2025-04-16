@@ -7,7 +7,6 @@ import { FeatureFlag, featureFlagEvents } from "@/features/flags";
 import { checkFeatureUsageLimit } from "@/lib/checkFeatureUsageLimit";
 import { api } from "../../convex/_generated/api";
 import { client } from "@/lib/schematic";
-import { getVideoById } from "../../convex/videos";
 
 export interface VideoResponse {
   success: boolean;

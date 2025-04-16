@@ -14,8 +14,9 @@ import { useUser } from "@clerk/nextjs";
 import { set } from "zod";
 import { createOrGetVideo } from "@/actions/createOrGetVideo";
 import { Doc } from "../../../../../convex/_generated/dataModel";
+import { Video } from "lucide-react";
 // The relative path from this page to dataModel.d.ts is:
-const AnalysisPage = () => {
+function AnalysisPage() {
   const params = useParams<{ videoId: string }>();
   const { videoId } = params;
   const { user } = useUser();
@@ -76,11 +77,10 @@ const AnalysisPage = () => {
             />
 
             {/* YouTube Transcription Status */}
-
-            {/* YouTube Video Details */}
-            <YoutubeVideoDetails videoId={videoId} />
+            {VideoTranscriptionStatus}
           </div>
-
+          {/* YouTube Video Details */}
+          <YoutubeVideoDetails videoId={videoId} />
           {/* Thumbnail Generation */}
           <ThumbnailGeneration videoId={videoId} />
           {/* Title Generation  */}
@@ -96,5 +96,5 @@ const AnalysisPage = () => {
       </div>
     </div>
   );
-};
+}
 export default AnalysisPage;

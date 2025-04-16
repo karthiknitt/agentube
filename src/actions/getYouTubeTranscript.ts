@@ -5,7 +5,6 @@ import { ConvexHttpClient } from "convex/browser";
 import { Innertube } from "youtubei.js";
 import { FeatureFlag, featureFlagEvents } from "@/features/flags";
 import { client } from "@/lib/schematic";
-import { UserRoundIcon } from "lucide-react";
 
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 

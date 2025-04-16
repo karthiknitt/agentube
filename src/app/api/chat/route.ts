@@ -1,22 +1,13 @@
 import { NextResponse } from "next/server";
-
-// Third-party library imports
 import { createAnthropic } from "@ai-sdk/anthropic";
 import { streamText, tool } from "ai";
 import { currentUser } from "@clerk/nextjs/server";
-import { z } from "zod";
-
-// Local imports - actions
-import getVideoDetails from "../../../actions/getVideoDetails";
-
-// Local imports - tools
+import { getVideoDetails } from "@/actions/getVideoDetails";
 import fetchTranscript from "../../../../tools/fetchTranscript";
 import { generateImage } from "../../../../tools/generateImage";
+import { z } from "zod";
+import { getvideoIdFromURL } from "@/lib/getvideoIdFromURL";
 import generateTitle from "../../../../tools/generateTitle";
-
-// Local imports - utilities
-import getVideoIdFromURL from "../../../lib/getvideoIdFromURL";
-import getvideoIdFromURL from "../../../lib/getvideoIdFromURL";
 
 const anthropic = createAnthropic({
   apiKey: process.env.CLAUDE_API_KEY,

@@ -1,11 +1,11 @@
 "use server";
 import { google } from "googleapis";
-import { VideoDetails } from "../../types/VideoDetails";
+import { VideoDetails } from "../../types/types";
 const youtube = google.youtube({
   version: "v3",
   auth: process.env.YOUTUBE_API_KEY,
 });
-async function getVideoDetails(videoId: string) {
+export async function getVideoDetails(videoId: string) {
   console.log("fetching video details for :", videoId);
   try {
     const videoResponse = await youtube.videos.list({
@@ -18,6 +18,7 @@ async function getVideoDetails(videoId: string) {
     const channelResponse = await youtube.channels.list({
       part: ["snippet", "statistics"],
       id: [videoDetails.snippet?.channelId || ""],
+      key: process.env.YOUTUBE_API_KEY,
     });
 
     const channelDetails = channelResponse.data.items?.[0];
@@ -50,5 +51,3 @@ async function getVideoDetails(videoId: string) {
     return null;
   }
 }
-
-export default getVideoDetails;

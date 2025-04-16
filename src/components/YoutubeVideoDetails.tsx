@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { VideoDetails } from "../../types/VideoDetails";
-import getVideoDetails from "@/actions/getVideoDetails";
+import { VideoDetails } from "../../types/types";
+import { getVideoDetails } from "@/actions/getVideoDetails";
 import Image from "next/image";
 import { Calendar, Eye, MessageCircle, ThumbsUp } from "lucide-react";
 

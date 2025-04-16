@@ -12,7 +12,7 @@ export async function checkFeatureUsageLimit(
       },
     });
 
-    const feature = entitlements.data.features?.find(
+    const feature = entitlements.data.features.find(
       (entitlement) => entitlement.feature?.eventSubtype === eventSubtype
     );
 
@@ -25,7 +25,7 @@ export async function checkFeatureUsageLimit(
     }
 
     const { usage, allocation } = feature;
-    if (usage == undefined || allocation == undefined) {
+    if (usage === undefined || allocation === undefined) {
       return {
         success: false,
         error: "System error - contact support.",

@@ -9,7 +9,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { toast } from "sonner";
 
-function TitleGenerations({ videoId }: { videoId: string }) {
+function TitleGeneration({ videoId }: { videoId: string }) {
   const { user } = useUser();
   const titles = useQuery(api.titles.list, { videoId, userId: user?.id ?? "" });
 
@@ -64,4 +64,4 @@ function TitleGenerations({ videoId }: { videoId: string }) {
   );
 }
 
-export default TitleGenerations;
+export default TitleGeneration;

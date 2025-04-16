@@ -1,6 +1,6 @@
 "use server";
 
-import getvideoIdFromURL from "@/lib/getvideoIdFromURL";
+import { getvideoIdFromURL } from "@/lib/getvideoIdFromURL";
 import { redirect } from "next/navigation";
 
 export default async function analyzeYouTubeVideo(formData: FormData) {
