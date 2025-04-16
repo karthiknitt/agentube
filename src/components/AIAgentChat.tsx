@@ -25,7 +25,7 @@ const formatToolInvocation = (part: ToolPart) => {
   return `🔧 Tool Used: ${part.toolInvocation.toolName}`;
 };
 
-function AiAgentChat({ videoId }: { videoId: string }) {
+function AIAgentChat({ videoId }: { videoId: string }) {
   // Scrolling to Bottom Logic
   const bottomRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -269,4 +269,4 @@ function AiAgentChat({ videoId }: { videoId: string }) {
   );
 }
 
-export default AiAgentChat;
+export default AIAgentChat;
