@@ -11,10 +11,10 @@ import Transcription from "@/components/Transcription";
 import AIAgentChat from "@/components/AIAgentChat";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { set } from "zod";
+
 import { createOrGetVideo } from "@/actions/createOrGetVideo";
 import { Doc } from "../../../../../convex/_generated/dataModel";
-import { Video } from "lucide-react";
+
 // The relative path from this page to dataModel.d.ts is:
 function AnalysisPage() {
   const params = useParams<{ videoId: string }>();

@@ -39,8 +39,7 @@ export async function checkFeatureUsageLimit(
         )?.[0] || eventSubtype;
       return {
         success: false,
-        error:
-          "You have reached your ${featureName} limit.Please upgrade your plan to continue using this feature.",
+        error: `You have reached your ${featureName} limit.Please upgrade your plan to continue using this feature.`,
       };
     }
     return { success: true };
